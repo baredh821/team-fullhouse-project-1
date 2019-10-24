@@ -1,0 +1,32 @@
+<html></html>
+
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+    var proxy = "https://chriscastle.com/proxy/index.php?:proxy:";
+ /**
+  * Sample JavaScript code for civicinfo.elections.voterInfoQuery
+  * See instructions for running APIs Explorer code samples locally:
+  * https://developers.google.com/explorer-help/guides/code_samples#javascript
+  */
+ function loadClient() {
+   gapi.client.setApiKey("AIzaSyCfJ43LRmmtdLASppmxY0NB5aIfzi5knmY");
+   return gapi.client.load(proxy + "https://content.googleapis.com/discovery/v1/apis/civicinfo/v2/rest")
+       .then(function() { console.log("GAPI client loaded for API"); },
+             function(err) { console.error("Error loading GAPI client for API", err); });
+ }
+ // Make sure the client is loaded before calling this method.
+ function execute() {
+   return gapi.client.civicinfo.elections.voterInfoQuery({
+     "address": "19349 Annabelle Lane Corcoran MN 55340"
+   })
+       .then(function(response) {
+               // Handle the results here (response.result has the parsed body).
+               console.log("Response", response);
+             },
+             function(err) { console.error("Execute error", err); });
+ }
+ gapi.load("client");
+</script>
+<button onclick="loadClient()">load</button>
+<button onclick="execute()">execute</button>
+</html>
